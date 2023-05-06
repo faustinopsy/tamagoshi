@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamagotchi Virtual</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ tamagotchi.nome }}</h1>
+    <p>Evolução: {{ tamagotchi.evolucao }}</p>
+    <p>Fome: {{ tamagotchi.fome }}</p>
+    <p>Sono: {{ tamagotchi.sono }}</p>
+    <p>Idade: {{ tamagotchi.idade }}</p>
+    <p>Humor: {{ humor }}</p>
+
+
+    <button @click="alimentar">Alimentar</button>
+    <button @click="dormir">Dormir</button>
+  </div>
+
+  <script src="tamagotchi.js"></script>
+</body>
+</html>
