@@ -5,21 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tamagotchi Virtual</title>
   <script src="vue.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    <h1>{{ tamagotchi.nome }}</h1>
+    <h4>Conquistas</h4>
+<ul>
+  <li v-for="conquista in conquistas">{{ conquista.nome }}</li>
+</ul>
+
+<h4>Recompensas</h4>
+<ul>
+  <li v-for="recompensa in recompensas">{{ recompensa.nome }} - {{ recompensa.descricao }}</li>
+</ul>
+    <h2>{{ tamagotchi.nome }}</h2>
+    <div class="tamagotchi-avatar">
+        <img :src="`img/${tamagotchi.evolucao.toLowerCase()}_${humor.toLowerCase()}.png`" alt="Avatar do Tamagotchi">
+      </div>
     <p>Evolução: {{ tamagotchi.evolucao }}</p>
-    <p>Fome: {{ tamagotchi.fome }}</p>
-    <p>Sono: {{ tamagotchi.sono }}</p>
-    <p>Idade: {{ tamagotchi.idade }}</p>
+        <div class="progress-bar">
+        <div class="progress" :style="{width: tamagotchi.fome + '%'}">Fome: {{ tamagotchi.fome }}</div>
+         </div>
+        <div class="progress-bar">
+        <div class="progress" :style="{width: tamagotchi.sono + '%'}">Sono: {{ tamagotchi.sono }}</div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" :style="{width: tamagotchi.idade/10 + '%'}">Idade: {{ tamagotchi.idade }}</div>
+      </div>
+      
     <p>Humor: {{ humor }}</p>
 
+    <button @click="alimentar" :disabled="dormindo">Alimentar</button>
+     <label class="switch" title="dormir?">
+        <input type="checkbox" id="yes_no" name="yes_no" v-model="dormindo">
+        <span class="slider round"></span>
+      </label>
+    
 
-    <button @click="alimentar">Alimentar</button>
-    <button @click="dormir">Dormir</button>
   </div>
-
   <script src="tamagotchi.js"></script>
 </body>
 </html>

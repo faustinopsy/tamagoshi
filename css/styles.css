@@ -1,0 +1,155 @@
+body {
+    background-color: #0b3d91;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-image: url('../img/fundo.jpg');
+    backdrop-filter: blur(10px);
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+  }
+
+  h1 {
+    margin: 20px 0;
+  }
+
+  p {
+      width: 90%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .tamagotchi-avatar {
+    width: 284px;
+    height: 139px;
+    border: 2px solid black;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+  }
+
+  .tamagotchi-avatar img {
+    width: 50%;
+    height: auto;
+    margin: 20%;
+  }
+
+  button {
+    background-color: #0b3d91;
+    border: 2px solid #ff0000;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    border-radius: 34px;
+  }
+
+  button:hover {
+    background-color: #1c6ab1;
+  }
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border: 2px solid #aae506;
+  }
+.switch {
+  position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+
+.switch input { 
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+  position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #0b3d91;
+border: 2px solid #ff0000;
+box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+transition: 0.4s;
+border-radius: 34px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 29px;
+width: 29px;
+left: 0px;
+margin-right: 20px;
+bottom: 1px;
+background-image: url('./sun.png');
+background-size: cover;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider:before {
+background-image: url('./mon.png');
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Estilo neon para o label */
+label {
+color: white;
+font-family: "Arial", sans-serif;
+font-size: 16px;
+text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+}
+.progress-bar {
+width: 90%;
+background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 8px 0;
+position: relative;
+}
+
+.progress-bar span {
+position: absolute;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.progress {
+height: 24px;
+background-color: #ff0000;
+}
