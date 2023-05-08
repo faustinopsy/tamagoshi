@@ -1,16 +1,17 @@
+* {
+  box-sizing: border-box;
+}
 body {
-    background-color: #0b3d91;
+    background-color: #000000;
     font-family: 'Orbitron', sans-serif;
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
     background-image: url('../img/fundo.jpg');
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-size: cover;
   }
 
@@ -19,43 +20,53 @@ body {
   }
 
   p {
-      width: 90%;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     border: 2px solid #ff0000;
     box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
     padding: 10px;
     border-radius: 4px;
     font-size: 18px;
-    margin: 8px 0;
+    margin: 8px 52px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
   }
 
-  .tamagotchi-avatar {
-    width: 284px;
-    height: 139px;
-    border: 2px solid black;
+  .info {
+    width: 80%;
+  }
+  .pessoa-avatar {
+    background-color: #000000;
+    width: 170px;
+    height: 170px;
     display: inline-flex;
     align-items: center;
     margin-bottom: 20px;
     box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
   }
 
-  .tamagotchi-avatar img {
-    width: 50%;
-    height: auto;
-    margin: 20%;
+  .pessoa-avatar img {
+    width: 170px;
+    height: 170px;
   }
 
   button {
     background-color: #0b3d91;
     border: 2px solid #ff0000;
     color: white;
-    padding: 10px 20px;
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0 10px;
-    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    margin: 10px 10px;
+    box-shadow: 0 9px 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
     border-radius: 34px;
+    width: 80px;
+    height: 34px;
+    
   }
 
   button:hover {
@@ -66,29 +77,34 @@ body {
     cursor: not-allowed;
     border: 2px solid #aae506;
   }
-.switch {
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  .switch {
   position: relative;
-display: inline-block;
-width: 60px;
-height: 34px;
-}
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  }
 
-.switch input { 
-opacity: 0;
-width: 0;
-height: 0;
-}
+  .switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+  }
 
 .slider {
   position: absolute;
 cursor: pointer;
-top: 0;
+top: -8px;
 left: 0;
 right: 0;
-bottom: 0;
+bottom: 5px;
 background-color: #0b3d91;
 border: 2px solid #ff0000;
-box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+box-shadow: 0 9px 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
 transition: 0.4s;
 border-radius: 34px;
 }
@@ -112,7 +128,7 @@ background-image: url('./mon.png');
 }
 
 input:focus + .slider {
-box-shadow: 0 0 1px #2196F3;
+box-shadow: 0 0 1px #000000;
 }
 
 input:checked + .slider:before {
@@ -129,14 +145,14 @@ font-size: 16px;
 text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
 }
 .progress-bar {
-width: 90%;
+width: 200px;
 background-color: rgba(0, 0, 0, 0.5);
-    border: 2px solid #ff0000;
-    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 18px;
-    margin: 8px 0;
+border: 2px solid #ff0000;
+box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+padding: 10px;
+border-radius: 4px;
+font-size: 18px;
+margin: 8px 52px;
 position: relative;
 }
 
@@ -150,6 +166,39 @@ align-items: center;
 }
 
 .progress {
-height: 24px;
-background-color: #ff0000;
+background-color: #ff0000a3;
+}
+.column {
+  float: left;
+  width: 45%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: flex;
+  clear: both;
+  text-align: center;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(219, 14, 14, 0.729);
+  padding: 16px;
+  text-align: center;
+  align-items: center;
+  background-color: #f1f1f100;
 }

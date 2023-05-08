@@ -3,47 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tamagotchi Virtual</title>
-  <script src="vue.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>pessoa Virtual</title>
+  <script src="js/vue.js"></script>
+  <link href="css/css2.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    <h4>Conquistas</h4>
-<ul>
-  <li v-for="conquista in conquistas">{{ conquista.nome }}</li>
-</ul>
-
-<h4>Recompensas</h4>
-<ul>
-  <li v-for="recompensa in recompensas">{{ recompensa.nome }} - {{ recompensa.descricao }}</li>
-</ul>
-    <h2>{{ tamagotchi.nome }}</h2>
-    <div class="tamagotchi-avatar">
-        <img :src="`img/${tamagotchi.evolucao.toLowerCase()}_${humor.toLowerCase()}.png`" alt="Avatar do Tamagotchi">
-      </div>
-    <p>Evolução: {{ tamagotchi.evolucao }}</p>
-        <div class="progress-bar">
-        <div class="progress" :style="{width: tamagotchi.fome + '%'}">Fome: {{ tamagotchi.fome }}</div>
-         </div>
-        <div class="progress-bar">
-        <div class="progress" :style="{width: tamagotchi.sono + '%'}">Sono: {{ tamagotchi.sono }}</div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress" :style="{width: tamagotchi.idade/10 + '%'}">Idade: {{ tamagotchi.idade }}</div>
-      </div>
+  
+    <div>Tempo para restaurar capacidade de mineração: {{ formatarTempoRestauracao() }}</div>
       
-    <p>Humor: {{ humor }}</p>
+  <div class="row"> 
+    <div class="column">
+        <div class="card">
+            <h2>{{ pessoa.nome }}</h2>
+            <div class="pessoa-avatar">
+            <img :src="`img/${pessoa.evolucao.toLowerCase()}_${dormindo ? 'dormindo' : humor.toLowerCase()}.gif`" alt="Avatar do pessoa">
+            </div>
+        </div>
+        <div class="card">
+            <button class="button" @click="alimentar" :disabled="dormindo">Comer</button>
+              <label class="switch" title="dormir?">
+                <input type="checkbox" id="yes_no" name="yes_no" v-model="dormindo">
+                <span class="slider round"></span>
+              </label>
+        </div>
+        <div class="card">
+            <h4>Conquistas</h4>
+            <ul>
+            <li v-for="conquista in conquistas">{{ conquista.nome }}</li>
+            </ul>
 
-    <button @click="alimentar" :disabled="dormindo">Alimentar</button>
-     <label class="switch" title="dormir?">
-        <input type="checkbox" id="yes_no" name="yes_no" v-model="dormindo">
-        <span class="slider round"></span>
-      </label>
-    
+            <h4>Recompensas</h4>
+            <ul>
+            <li v-for="recompensa in recompensas">{{ recompensa.nome }} - {{ recompensa.descricao }}</li>
+            </ul>
+        </div>
+    </div>
+   
+    <div class="column">
+        <div class="card">
+            <p>Humor: {{ humor }}</p>
+            <div class="progress-bar">Nível: {{ pessoa.evolucao }}
+            <div class="progress" :style="{width: pessoa.idade/10 + '%'}"> {{ pessoa.idade }} </div>
+            </div>
+        </div>
+          <div class="card">
+            <div class="progress-bar">Fome:
+                <div class="progress" :style="{width: pessoa.fome + '%', backgroundColor: progressBarColor(pessoa.fome)}"> {{ pessoa.fome }}</div>
+              </div>
+              <div class="progress-bar">Sono:
+                <div class="progress" :style="{width: pessoa.sono + '%', backgroundColor: progressBarColor(pessoa.sono)}"> {{ pessoa.sono }}</div>
+              </div>
+          </div>
+          <div class="card">
+            <div class="progress-bar">Saldo Mineração:
+                <div class="progress" :style="{width: miner.saldo + '%', backgroundColor: minerBarColor(miner.saldo) }"> {{ miner.saldo }}</div>
+              </div>
+              <div class="progress-bar">poder Mineraração:
+                <div class="progress" :style="{width: miner.capacidadeMineracao + '%', backgroundColor: minerBarColor(miner.capacidadeMineracao) }"> {{ miner.capacidadeMineracao }}</div>
+            </div>
+          </div>
+    </div>
+       
+    </div>
 
-  </div>
-  <script src="tamagotchi.js"></script>
+  
+</div>
+  <script src="js/miner.js"></script>
 </body>
 </html>
