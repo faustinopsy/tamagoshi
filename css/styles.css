@@ -20,10 +20,10 @@ body {
   }
 
   p {
-    width: 200px;
+    width: 250px;
     background-color: rgba(0, 0, 0, 0.5);
-    border: 2px solid #ff0000;
-    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    border: 2px solid #4afff9;
+    box-shadow: 0 0 5px #3cd6f5, 0 0 15px #2fe2fd, 0 0 20px #66c2ff;
     padding: 10px;
     border-radius: 4px;
     font-size: 18px;
@@ -46,7 +46,7 @@ body {
     display: inline-flex;
     align-items: center;
     margin-bottom: 20px;
-    box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    box-shadow: 0 0 5px #3cd6f5, 0 0 15px #2fe2fd, 0 0 20px #66c2ff;
   }
 
   .pessoa-avatar img {
@@ -62,9 +62,9 @@ body {
     border-radius: 4px;
     cursor: pointer;
     margin: 10px 10px;
-    box-shadow: 0 9px 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    box-shadow: 0 0 5px #3cd6f5, 0 0 15px #2fe2fd, 0 0 20px #66c2ff;
     border-radius: 34px;
-    width: 80px;
+    width: 120px;
     height: 34px;
     
   }
@@ -104,7 +104,7 @@ right: 0;
 bottom: 5px;
 background-color: #0b3d91;
 border: 2px solid #ff0000;
-box-shadow: 0 9px 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+box-shadow: 0 0 5px #3cd6f5, 0 0 15px #2fe2fd, 0 0 20px #66c2ff;
 transition: 0.4s;
 border-radius: 34px;
 }
@@ -142,13 +142,13 @@ label {
 color: white;
 font-family: "Arial", sans-serif;
 font-size: 16px;
-text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+text-shadow: 0 0 5px #ff0000, 0 0 10px #61efff, 0 0 20px #69ffc8, 0 0 30px #51e2ff, 0 0 40px #80ffdd;
 }
 .progress-bar {
 width: 200px;
 background-color: rgba(0, 0, 0, 0.5);
 border: 2px solid #ff0000;
-box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+box-shadow: 0 0 5px #3cd6f5, 0 0 15px #2fe2fd, 0 0 20px #66c2ff;
 padding: 0px;
 border-radius: 4px;
 font-size: 18px;
@@ -229,7 +229,7 @@ background-color: #ff0000a3;
 
 .circle {
   fill: none;
-  stroke: #ff0000;
+  stroke: #64ff6e;
   stroke-width: 2;
   stroke-linecap: round;
   transform: rotate(-90deg);
@@ -244,7 +244,7 @@ background-color: #ff0000a3;
   text-anchor: middle;
 }
 .label {
-  fill: #ff0000;
+  fill: #3fd3f8;
   font-family: sans-serif;
   font-size: 0.4em;
   text-anchor: middle;
@@ -256,7 +256,7 @@ background-color: #ff0000a3;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 5px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+  box-shadow: 0 0 5px #57baf7, 0 0 15px #57c4ff, 0 0 20px #4af6ff;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,6 @@
 const minerTemplate = `
   <div>
+  <button class="button" v-if="showSyncButton" @click="syncData">Salvar no servidor</button>
   <div>Tempo para restaurar CPU: {{ formatarTempoRestauracao() }}</div>
     <div class="column">
         <div class="cardb">
@@ -38,6 +39,7 @@ const miner = new Vue({
     energia: 100,
     equipamentos: [],
     tempoRestauracao: 12 * 60 * 1000, // 24 horas em milissegundos
+    showSyncButton: false,
   },
   methods: {
     formatarTempoRestauracao() {
@@ -107,6 +109,32 @@ const miner = new Vue({
       this.pessoa = dadosPessoa;
       this.salvarEstado();
     },
+    async syncData() {
+      const email = localStorage.getItem('email');
+      const appState = localStorage.getItem('appState');
+      const dataToSync = {
+        email: email,
+        appState: appState,
+      };
+      try {
+        const response = await fetch('backend/api.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataToSync) // Modifique esta linha
+        });
+
+        if (response.ok) {
+          alert("Dados compartilhados com sucesso!");
+        } else {
+          alert("Erro ao compartilhar dados com o servidor.");
+        }
+      } catch (error) {
+        alert("Erro ao compartilhar dados com o servidor.");
+      }
+    },
+   
   },
   created() {
     // Registre os ouvintes de eventos do EventBus
@@ -115,7 +143,10 @@ const miner = new Vue({
   },
   mounted() {
     this.restaurarEstado();
-
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      this.showSyncButton = true;
+    }
   
     setInterval(() => {
       this.restaurarCapacidadeMineracao();

@@ -65,6 +65,7 @@ const pessoaTemplate = `
           Saldo:  {{ saldo }}
       </div>
       </div>
+      <button class="button" v-if="showSyncButton" @click="restoreDataFromServer">Resgatar do servidor</button>
   </div>
 `;
 
@@ -86,6 +87,7 @@ const pessoa = new Vue({
     conquistas: [],
     tempoDesdeUltimaAtualizacaoIdade: 0,
     morreu: false,
+    showSyncButton: false,
       metas: [
           {
           nome: 'Sobreviver por 30 dias',
@@ -121,6 +123,32 @@ const pessoa = new Vue({
       recompensas: [],
   },
   methods: {
+    async restoreDataFromServer() {
+      try {
+        const email = localStorage.getItem('email');
+        
+        const response = await fetch('backend/api.php?email=' + encodeURIComponent(email));
+        const data = await response.json();
+         // Atualizando os atributos de pessoa e miner
+         this.idade = data[0].idade;
+         this.fome = data[0].fome;
+         this.evolucao = data[0].evolucao;
+         this.sono = data[0].sono;
+         this.diasTristes = data[0].diasTristes;
+         this.humor = data[0].humor;
+         this.saldo = data[0].saldo;
+         this.dormindo = data[0].dormindo === 1 ? true : false; // Convertendo para boolean
+         
+
+
+        // Salvando os dados atualizados no localStorage
+        //localStorage.setItem('appState', JSON.stringify({ pessoa: this.pessoa, miner: this.miner }));
+
+        alert("Dados restaurados com sucesso!");
+      } catch (error) {
+        alert("Erro ao restaurar dados do servidor.");
+      }
+    },
     showSadSplashScreen() {
       this.morreu = true;
       eventBus.emit("showSadSplash");
@@ -181,12 +209,10 @@ const pessoa = new Vue({
     },
     tick() {
         if (localStorage.getItem("splashShown") === "true") {
-        
-      
         this.tempoDesdeUltimaAtualizacaoIdade += 1;
         // Verifica se 12 minutos se passaram (12 minutos * 60 segundos = 720 segundos)
         if (this.tempoDesdeUltimaAtualizacaoIdade >= 720) {
-          this.idade = parseFloat((this.idade + 1).toFixed(3));
+          this.idade = this.idade + 1;
           this.tempoDesdeUltimaAtualizacaoIdade = 0; // Reinicie o contador
         }
         if (!this.dormindo) {
@@ -249,7 +275,10 @@ const pessoa = new Vue({
     setInterval(() => {
       this.tick();
     }, 1000);
-  
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      this.showSyncButton = true;
+    }
   },
   created() {
     eventBus.on("atualizar-saldo", this.atualizarSaldo);

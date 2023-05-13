@@ -3,123 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pessoa Virtual</title>
-  <script src="js/vue.js"></script>
+  <title>App</title>
   <link href="css/css2.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="js/vue.js"></script>
+  
+
+  <script type="module" src="js/event-bus.js"></script>
+  <script type="module" src="js/SplashScreen.js"></script>
+  <script type="module" src="js/pessoa.js"></script>
+  <script type="module" src="js/miner.js"></script>
 </head>
 <body>
+  <div id="abertura"></div>
   <div id="app">
-  
-    <div>Tempo para restaurar capacidade de mineração: {{ formatarTempoRestauracao() }}</div>
-      
-  <div class="row"> 
-    <div class="column">
-        <div class="cardb">
-            <h2>{{ pessoa.nome }}</h2>
-            <div class="pessoa-avatar">
-            <img :src="`img/${pessoa.evolucao.toLowerCase()}_${dormindo ? 'dormindo' : humor.toLowerCase()}.gif`" alt="Avatar do pessoa">
-            </div>
-        </div>
-        <div class="cardb">
-            <p>{{ pessoa.evolucao }} {{ humor }}</p>
-            <div class="progress-bar">Saldo Mineração:
-                <div class="progress" :style="{width: miner.saldo/10 + '%', backgroundColor: minerBarColor(miner.saldo) }"> {{ miner.saldo }}</div>
-              </div>
-            <!-- <div class="progress-bar">
-            <div class="progress" :style="{width: pessoa.idade/10 + '%'}"> {{ pessoa.idade }} </div>
-            </div> -->
-        </div>
-        <!--<div class="card">
-            <h4>Conquistas</h4>
-            <ul>
-            <li v-for="conquista in conquistas">{{ conquista.nome }}</li>
-            </ul>
+    <div class="row"> 
+      <div id="pessoa"></div>
+      <div id="miner"></div>
+    </div>
+  </div>
 
-            <h4>Recompensas</h4>
-            <ul>
-            <li v-for="recompensa in recompensas">{{ recompensa.nome }} - {{ recompensa.descricao }}</li>
-            </ul>
-        </div>-->
-    </div>
-   
-    <div class="column">
-        <div class="cardb">
-            <button class="button" @click="alimentar" :disabled="dormindo">Comer</button>
-            <label class="switch" title="dormir?">
-              <input type="checkbox" id="yes_no" name="yes_no" v-model="dormindo">
-              <span class="slider round"></span>
-            </label>
-        </div>
-          <div class="card">
-               <div class="circular-progress">
-                <svg viewBox="0 0 36 36" class="circular-chart">
-                  <path
-                    class="circle-bg"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="circle"
-                    stroke-dasharray="0, 100"
-                    :stroke-dasharray="`${(pessoa.fome / 100) * 100}, 100`"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <text x="18" y="13" class="label">Fome</text>
-                  <text x="18" y="20.35" class="percentage"> {{ pessoa.fome }}% </text>
-                </svg>
-              </div>
-              <div class="circular-progress">
-                <svg viewBox="0 0 36 36" class="circular-chart">
-                  <path
-                    class="circle-bg"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="circle"
-                    stroke-dasharray="0, 100"
-                    :stroke-dasharray="`${(pessoa.sono / 100) * 100}, 100`"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  /> <text x="18" y="13" class="label">Sono</text>
-                  <text x="18" y="20.35" class="percentage"> {{ pessoa.sono }}% </text>
-                </svg>
-              </div>
-              <div class="circular-progress">
-                <svg viewBox="0 0 36 36" class="circular-chart">
-                  <path
-                    class="circle-bg"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="circle"
-                    stroke-dasharray="0, 100"
-                    :stroke-dasharray="`${(miner.capacidadeMineracao / 100) * 100}, 100`"
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                  /> <text x="18" y="13" class="label">CPU</text>
-                  <text x="18" y="20.35" class="percentage"> {{ miner.capacidadeMineracao }}% </text>
-                </svg>
-              </div>
-          </div>
-          <!-- <div class="card">
-             
-          </div> -->
-    </div>
-       
-    </div>
-
-  
-</div>
-  <script src="js/app.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      methods: {
+        alimentarPessoa() {
+          eventBus.emit("alimentar");
+        },
+        minerar() {
+          eventBus.emit("minerar");
+        },
+      },
+    });
+  </script>
 </body>
 </html>
